@@ -14,9 +14,13 @@ const SearchBar = () => {
 
 const styles = StyleSheet.create({
     viewStyle: {
-        backgroundColor: "#ccc",
-        padding: 4,
-        borderRadius: 6
+        backgroundColor: "#eee",
+        padding: 1,
+        borderRadius: 6,
+        height: 50,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center'
     }
 })
 
