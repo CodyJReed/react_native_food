@@ -1,29 +1,33 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 
 import SearchBar from "../components/SearchBar";
 
-import { yelpGet } from "../api/yelp";
+import useBusinesses from "../hooks/useBusinesses";
 
 const SearchScreen = () => {
-    const [term, setTerm] = useState('')
-    const [results, setResults] = useState([])
+  const [term, setTerm] = useState("");
+  const [searchApi, results, errorMessage] = useBusinesses()
 
-    return (
-        <View style={{
-            backgroundColor: "#fff",
-            height: "100%",
-            padding: 10
-        }}>
-            <SearchBar 
-            term={term} 
-            onTermChange={(newTerm) => setTerm(newTerm)}
-            onTermSubmit={() => yelpGet(term)}
-            />
-        </View>
-    )
-}
+  return (
+    <View
+      style={{
+        backgroundColor: "#fff",
+        height: "100%",
+        padding: 10,
+      }}
+    >
+      <SearchBar
+        term={term}
+        onTermChange={setTerm}
+        onTermSubmit={() => searchApi(term)}
+      />
+      <Text>We have found {results.length} results</Text>
+      {errorMessage && <Text>{errorMessage}</Text>}
+    </View>
+  );
+};
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
 
-export default SearchScreen
+export default SearchScreen;

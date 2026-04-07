@@ -1,17 +1,8 @@
-export const yelpGet = async (term) => {
-    try{
-        const results = await fetch(`${process.env.BASE_URL}/search?${term}&location=reno`, {
-            headers: {
-                'Authorization': `Bearer ${process.env.YELP_API_KEY}`
-            }
-        })
-        console.log(results)
-    } catch(e) {
-        if (e instanceof Error) {
-            console.log(e.message)
-            return []
-        }
+import axios from "axios";
 
-        return 'something went wrong!'
+export default axios.create({
+    baseURL: process.env.EXPO_PUBLIC_BASE_URL,
+    headers: {
+        Authorization: `Bearer ${process.env.EXPO_PUBLIC_YELP_API_KEY}`
     }
-}
+})
