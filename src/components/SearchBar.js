@@ -24,8 +24,9 @@ const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
 
 const styles = StyleSheet.create({
   viewStyle: {
-    backgroundColor: "#eee",
+    backgroundColor: "#ddd",
     paddingHorizontal: 2,
+    margin: 10,
     borderRadius: 6,
     height: 50,
     flexDirection: "row",
