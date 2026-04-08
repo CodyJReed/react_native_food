@@ -50,6 +50,10 @@ const SearchScreen = () => {
           header="Big Spender"
           results={filterResultsByPrice("$$$", results)}
         />
+        <ResultsList
+          header="Better Taste Good"
+          results={filterResultsByPrice("$$$$", results)}
+        />
       </ScrollView>
     </>
   );
