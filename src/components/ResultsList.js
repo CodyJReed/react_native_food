@@ -1,19 +1,30 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
+import ResultsDetail from "./ResultsDetail";
 
-const ResultsList = ({header}) => {
+const ResultsList = ({ header, results }) => {
+    if (results.length === -0) {
+        return null
+    }
+
   return (
     <View>
       <Text style={styles.headerStyle}>{header}</Text>
+      <FlatList
+        horizontal
+        data={results}
+        keyExtractor={(r) => r.id}
+        renderItem={({ item }) => <ResultsDetail item={item}/>}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    headerStyle: {
-        fontSize: 18,
-        fontWeight: 'bold'
-    }
+  headerStyle: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
 });
 
 export default ResultsList;

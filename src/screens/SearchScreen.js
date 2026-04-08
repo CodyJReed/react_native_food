@@ -6,9 +6,17 @@ import SearchBar from "../components/SearchBar";
 import useBusinesses from "../hooks/useBusinesses";
 import ResultsList from "../components/ResultsList";
 
+const filterResultsByPrice = (price, results = []) => {
+  if (!price || results.length === 0) {
+    return [];
+  }
+
+  return results.filter((r) => r.price === price);
+};
+
 const SearchScreen = () => {
   const [term, setTerm] = useState("");
-  const [searchApi, results, errorMessage] = useBusinesses()
+  const [searchApi, results, errorMessage] = useBusinesses();
 
   return (
     <View
@@ -25,9 +33,9 @@ const SearchScreen = () => {
       />
       <Text>We have found {results.length} results</Text>
       {errorMessage && <Text>{errorMessage}</Text>}
-      <ResultsList header="Cost Effective"/>
-      <ResultsList header="Bit Pricer"/>
-      <ResultsList header="Big Spender"/>
+      <ResultsList header="Cost Effective" results={filterResultsByPrice("$", results)}/>
+      <ResultsList header="Bit Pricer" results={filterResultsByPrice("$$", results)}/>
+      <ResultsList header="Big Spender" results={filterResultsByPrice("$$$", results)}/>
     </View>
   );
 };

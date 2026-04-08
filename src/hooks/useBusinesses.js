@@ -23,8 +23,8 @@ export default () => {
   };
 
   useEffect(() => {
-    // searchApi("pasta")
-    console.log("fetching businesses");
+    searchApi("pasta")
+    // console.log("fetching businesses");
   }, []);
 
   return [searchApi, results, errorMessage]
